@@ -1,17 +1,10 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
-class Author
-{
-    public static function getAll()
+class Author extends Model
     {
-        return [
-            ['id' => 1, 'name' => 'J.K. Rowling'],
-            ['id' => 2, 'name' => 'George Orwell'],
-            ['id' => 3, 'name' => 'Agatha Christie'],
-            ['id' => 4, 'name' => 'Stephen King'],
-            ['id' => 5, 'name' => 'Haruki Murakami'],
-        ];
+       protected $fillable = ['name'];
     }
-}
