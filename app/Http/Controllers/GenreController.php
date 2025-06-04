@@ -9,12 +9,25 @@ class GenreController extends Controller
 {
     public function index()
     {
-        return Genre::all();
+        $genres = genre::all();
+
+    if ($genres->isEmpty()) {
+        return response()->json([
+            "success" => true,
+            "message" => "Not Found!"
+        ], 200);
+    }
+    return response()->json([
+        "success" => true,
+        "message"=> "Get All Resources",
+        "data" => $genres
+    ]);
     }
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'required|string'
         ]);
         return Genre::create($validated);
     }
@@ -35,6 +48,7 @@ class GenreController extends Controller
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'description' => 'required|string'
         ]);
 
         $genre->update($validated);
